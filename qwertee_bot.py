@@ -4,7 +4,7 @@ import telebot
 import time
 
 def getURLfromString(text):
-    return text.rsplit(".jpg")[0].rsplit('source srcset="')[1]
+    return text.rsplit(".jpg")[0].rsplit('source srcset="')[1].replace("mens","zoom")
 def getImages():
     r = requests.get('https://www.qwertee.com/')
     result = []
@@ -25,5 +25,5 @@ bot=telebot.TeleBot('open('token.txt').read())
 for u in range(3):
     file = open("daily"+str(u)+".jpg", 'rb')
     bot.send_photo("@DailyQwertee", file)
-    #bot.send_message(5901753, "hi") just for testing
+    #bot.send_photo(5901753, file) just for testing
 
