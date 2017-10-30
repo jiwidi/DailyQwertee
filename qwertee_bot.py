@@ -28,6 +28,6 @@ names=getImages()
 bot=telebot.TeleBot(open('token.txt').read().strip())
 for u in range(3):
     file = open(names[u]+".jpg", 'rb')
-    bot.send_photo("@DailyQwertee", file,names[u])
+    bot.send_photo("@DailyQwertee", file,names[u]+", @DailyQwertee")
     #bot.send_photo(5901753, file,names[u]) #just for testing
 
