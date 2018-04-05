@@ -11,23 +11,24 @@ def getDATAfromString(text):
 def getImages():
     r = requests.get('https://www.qwertee.com/')
     result = []
+    filenames = ["pic1", "pic2", "pic3"]
     ind=0
     for i in range(3):
         ind=r.text.find('<picture>',ind+1)
         url=getDATAfromString(r.text[ind:ind+1000])
         z = requests.get("https:"+url[0]+".jpg", stream=True)
         if z.status_code == 200:
-            with open(url[1]+".jpg", 'wb') as f:
+            with open(filenames[i]+".jpg", 'wb') as f:
                 z.raw.decode_content = True
                 shutil.copyfileobj(z.raw, f)
         result.append(url[1])
         
-    return result
+    return result, filenames
 
-names=getImages()
+url, filenames =getImages()
 bot=telebot.TeleBot(open('token.txt').read().strip())
 for u in range(3):
-    file = open(names[u]+".jpg", 'rb')
-    bot.send_photo("@DailyQwertee", file,names[u]+", @DailyQwertee")
+    file = open(filenames[u]+".jpg", 'rb')
+    bot.send_photo("@DailyQwertee", file,url[u]+", @DailyQwertee")
     #bot.send_photo(5901753, file,names[u]) #just for testing
 
