@@ -16,7 +16,7 @@ def getImages():
     for i in range(3):
         ind=r.text.find('<picture>',ind+1)
         url=getDATAfromString(r.text[ind:ind+1000])
-        z = requests.get("https:"+url[0]+".jpg", stream=True)
+        z = requests.get(url[0]+".jpg", stream=True)
         if z.status_code == 200:
             with open(filenames[i]+".jpg", 'wb') as f:
                 z.raw.decode_content = True
