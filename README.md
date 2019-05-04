@@ -60,7 +60,7 @@ May change the Dockerfile to a light base image (probably alpine) in the future.
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/jiwidi/dailypepebot-cloud](https://github.com/jiwidi/)
+[https://github.com/jiwidi/DailyQwertee](https://github.com/jiwidi/)
 
 ## Contributors
 [https://github.com/zhonskate](https://github.com/zhonskate)
