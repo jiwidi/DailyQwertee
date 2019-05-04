@@ -7,7 +7,7 @@
 
 Sends you the 3 daily tshirts from qwertee.com, scheduled with cron to be executed at 23:10 every day.
 
-![](readmefiles/bot.png)
+![](readmefiles/example.png)
 
 ## Development setup
 
