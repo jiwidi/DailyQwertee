@@ -15,7 +15,7 @@ This repo contains files to deploy the bot both on docker (and exporting it to a
 
 ## Deployment
 
-###Gcloud.
+### Gcloud.
 
 To deploy on gcloud first create a credentials.yaml file on the gcloud-app folder with the bot TOKEN:
 ```
@@ -36,7 +36,7 @@ $ gcloud app deploy cron.yaml
 
 Easy as that!
 
-###Docker
+### Docker
 In order to use the Docker setup, use the following commands:
 
 ```bash
