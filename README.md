@@ -49,8 +49,7 @@ $ docker run -v <ABSOLUTE_PATH_TO_BOT_TOKEN>:/bot/token.txt qwerteebot
 
 May change the Dockerfile to a light base image (probably alpine) in the future.
 ## TODOs
-* The user should be able to set up a frequency to automatically recieve randompepes without the need to use /randomepep.
-* Allow submitting pepes for later review and appending them to the master database.
+* To write the list of TODOs
 
 ## Release History
 
