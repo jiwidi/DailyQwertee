@@ -1,0 +1,7 @@
+runtime: python37
+handlers:
+- url: /.*
+  script: auto
+
+includes:
+- credentials.yaml
