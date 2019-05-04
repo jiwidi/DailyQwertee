@@ -25,12 +25,10 @@ env_variables:
 
 Then run the following commands
 
-```
+```bash
 #inside the gcloud app folder
 $ gcloud app deploy
-```
-```
-#inside the gcloud app folder
+
 $ gcloud app deploy cron.yaml
 ```
 
