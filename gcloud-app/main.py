@@ -1,5 +1,6 @@
 import requests
 import shutil
+import os
 import telebot
 import time
 
@@ -11,23 +12,22 @@ def getDATAfromString(text):
 def getImages():
     r = requests.get('https://www.qwertee.com/')
     result = []
-    filenames = ["pic1", "pic2", "pic3"]
+    images=[]
     ind=0
     for i in range(3):
         ind=r.text.find('<picture>',ind+1)
         url=getDATAfromString(r.text[ind:ind+1000])
         z = requests.get(url[0]+".jpg", stream=True)
         if z.status_code == 200:
-            with open(filenames[i]+".jpg", 'wb') as f:
-                z.raw.decode_content = True
-                shutil.copyfileobj(z.raw, f)
+            img = z.content
+            images.append(img)
         result.append(url[1])
         
-    return result, filenames
+    return result, images
 
-url, filenames =getImages()
+url, images =getImages()
 bot=telebot.TeleBot(token=os.environ["TELEGRAM_TOKEN"])
 for u in range(3):
-    file = open(filenames[u]+".jpg", 'rb')
-    #bot.send_photo("@DailyQwertee", file,url[u]+", @DailyQwertee")
-    bot.send_photo(5901753, file,names[u]) #just for testing
+    file = images[u]
+    bot.send_photo("@DailyQwertee", file,url[u]+", @DailyQwertee")
+    #bot.send_photo(5901753, file,url[u]+", @DailyQwertee") #just for testing
