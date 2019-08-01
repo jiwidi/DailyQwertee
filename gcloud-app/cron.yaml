@@ -1,4 +1,4 @@
 cron:
     - description: "regular job"
-      url: /daily
+      url: /
       schedule: every day 21:10
