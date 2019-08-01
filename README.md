@@ -54,7 +54,8 @@ May change the Dockerfile to a light base image (probably alpine) in the future.
 * To write the list of TODOs
 
 ## Release History
-
+* 0.0.2
+    * Cloud functions support
 * 0.0.1
     * First release 
 
