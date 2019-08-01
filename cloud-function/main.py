@@ -25,10 +25,10 @@ def getImages():
         result.append(url[1])
         
     return result, images
-
-url, images =getImages()
-bot=telebot.TeleBot(token=os.environ["TELEGRAM_TOKEN"])
-for u in range(3):
-    file = images[u]
-    #bot.send_photo("@DailyQwertee", file,url[u]+", @DailyQwertee")
-    bot.send_photo(5901753, file,url[u]+", @DailyQwertee") #just for testing
+def qweerte():
+    url, images =getImages()
+    bot=telebot.TeleBot('<YOURTOKEN>')
+    for u in range(3):
+        file = images[u]
+        bot.send_photo("@DailyQwertee", file,url[u]+", @DailyQwertee")
+       #bot.send_photo(5901753, file,url[u]+", @DailyQwertee") #just for testing

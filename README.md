@@ -17,6 +17,7 @@ This repo contains files to deploy the bot both on docker (and exporting it to a
 
 ### Gcloud.
 
+#### Appengine with cron scheduler
 To deploy on gcloud first create a credentials.yaml file on the gcloud-app folder with the bot TOKEN:
 ```
 env_variables:
@@ -33,6 +34,9 @@ $ gcloud app deploy cron.yaml
 ```
 
 Easy as that!
+
+#### Cloud functions with google scheduler and pub/sub
+To deploy on gcloud with cloud functions use the code under `cloud_function` and follow the tutorial from google. https://cloud.google.com/scheduler/docs/tut-pub-sub
 
 ### Docker
 In order to use the Docker setup, use the following commands:
