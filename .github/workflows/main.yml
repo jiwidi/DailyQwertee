@@ -1,0 +1,26 @@
+name: py
+
+on:
+  schedule:
+    - cron: "5 23 * * *" #runs at 00:00 UTC everyday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 #install the python needed
+          
+      - name: Set up python libraries
+        run: python -m pip install -r github_action/requirements.txt
+        
+      - name: execute py script # run the run.py to get the latest data
+        run: |
+          python github_action/main.py
+        env:
+          key: ${{ secrets.BOT_TOKEN }} # if run.py requires passwords..etc, set it as 
