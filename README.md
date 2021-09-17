@@ -50,14 +50,20 @@ $ docker run -v <ABSOLUTE_PATH_TO_BOT_TOKEN>:/bot/token.txt qwerteebot
 ```
 
 May change the Dockerfile to a light base image (probably alpine) in the future.
+
+### Github actions
+
+With the current github action under `.github/workflows` you can have the script run at an schedule time. This is the current deployment.
 ## TODOs
 * To write the list of TODOs
 
 ## Release History
+* 0.0.3
+    * Github actions support
 * 0.0.2
     * Cloud functions support
 * 0.0.1
-    * First release 
+    * First release
 
 ## Meta
 
