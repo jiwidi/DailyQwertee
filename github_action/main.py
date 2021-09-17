@@ -36,7 +36,7 @@ def getImages():
 
 def qweerte():
     url, images = getImages()
-    bot = telebot.TeleBot(os.environ["bot_token"])
+    bot = telebot.TeleBot(os.environ["BOT_TOKEN"])
     for u in range(3):
         file = images[u]
         bot.send_photo("@DailyQwertee", file, url[u] + ", @DailyQwertee")
