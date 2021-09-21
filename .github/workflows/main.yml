@@ -2,7 +2,7 @@ name: py
 
 on:
   schedule:
-    - cron: "5 23 * * *" #runs at 00:00 UTC everyday
+    - cron: "5 21 * * *" #runs at 00:00 UTC everyday
     
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
