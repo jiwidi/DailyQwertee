@@ -1,6 +1,4 @@
 
-
-
 # DailyQwertee
 [![Join Daily Qwertee on Telegram](https://patrolavia.github.io/telegram-badge/chat.png)](https://t.me/DailyQwertee)
 
