@@ -1,7 +1,8 @@
 import requests
-import shutil
 import os
 import telebot
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 import time
 
 
@@ -20,28 +21,45 @@ def getDATAfromString(text):
 
 
 def getImages():
-    r = requests.get("https://www.qwertee.com/")
-    result = []
-    images = []
-    ind = 0
-    for i in range(3):
-        ind = r.text.find("<picture>", ind + 1)
-        url = getDATAfromString(r.text[ind : ind + 1000])
-        z = requests.get(url[0] + ".jpg", stream=True)
-        if z.status_code == 200:
-            img = z.content
-            images.append(img)
-        result.append(url[1])
+    # Headless chrome driver
+    options = webdriver.ChromeOptions()
+    options.add_argument("headless")
+    driver = webdriver.Chrome(options=options)
+    driver.get("https://www.qwertee.com/")
 
-    return result, images
+    # Wait for the page to load
+    time.sleep(5)
+
+    # Find images that have "product-thumbs" and "zoom" in the src attribute
+    images = driver.find_elements(
+        By.XPATH,
+        '//img[contains(@src, "product-thumbs") and contains(@src, "zoom")]',
+    )
+
+    # Extract the src attribute from the first 3 images
+    image_urls = [image.get_attribute("src") for image in images[:3]]
+
+    # Extract the alt attribute from the first 3 images
+    image_titles = [image.get_attribute("alt") for image in images[:3]]
+
+    # Download the images
+    image_data = []
+    for image_url in image_urls:
+        r = requests.get(image_url, stream=True)
+        if r.status_code == 200:
+            img = r.content
+            image_data.append(img)
+
+    return image_titles, image_data
 
 
 def qweerte():
     url, images = getImages()
-    bot = telebot.TeleBot("key")
+    bot = telebot.TeleBot(os.environ["key"])
     for u in range(3):
         file = images[u]
-        bot.send_photo(5901753, file, url[u] + ", @DailyQwertee")  # just for testing
+        bot.send_photo("@DailyQwertee", file, url[u] + ", @DailyQwertee")
 
 
-qweerte()
+if __name__ == "__main__":
+    qweerte()
