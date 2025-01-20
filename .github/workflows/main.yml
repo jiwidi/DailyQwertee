@@ -2,7 +2,7 @@ name: py
 
 on:
   schedule:
-    - cron: "5 22 * * *" #runs at 00:00 UTC everyday
+    - cron: "5 22 * * *" # Runs at 00:05 UTC everyday
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -12,25 +12,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner.
-      - name: setup python
-        uses: actions/setup-python@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8 #install the python needed
+          python-version: '3.8' # You can specify a newer version if needed
 
-      - name: Remove Chrome
-        run: sudo apt purge google-chrome-stable
-      - name: Remove default Chromium
-        run: sudo apt purge chromium-browser
-      - name: Install a new Chromium
-        run: sudo apt install -y chromium-browser
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+          python -m pip install --upgrade pip
+          pip install -r github_action/requirements.txt
 
-      - name: Set up python libraries
-        run: python -m pip install -r github_action/requirements.txt
-
-      - name: execute py script # run the run.py to get the latest data
+      - name: Execute Python Script
         run: |
           python github_action/main.py
         env:
-          key: ${{ secrets.BOT_TOKEN }} # if run.py requires passwords..etc, set it as
+          key: ${{ secrets.BOT_TOKEN }}
