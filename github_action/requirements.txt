@@ -1,4 +1,4 @@
 requests==2.32.0
 pyTelegramBotAPI==3.6.6
-selenium==4.28.1
+selenium==4.27.1
 webdriver-manager==4.0.2
